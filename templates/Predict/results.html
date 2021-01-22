@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+</head>
+<body>
+
+{% extends 'Predict/base.html' %}
+{% block base %}
+<div class="card" style="width:400px ">
+  <img class="card-img-top" src="{{ input.photo.url }}" alt="Card image">
+    <div class="card-header"> Results </div>
+  <div class="card-body">
+    <h4 class="card-title">{{ rslt }}</h4>
+  </div>
+</div>
+
+
+{% endblock %}
+</body>
+</html>
