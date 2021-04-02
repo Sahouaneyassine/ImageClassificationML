@@ -6,6 +6,7 @@ from Predict.forms import InputForm
 from Predict.models import Input
 from django.core.mail import send_mail, EmailMultiAlternatives
 from django.conf import settings
+from keras.preprocessing import image
 
 from django.core.mail import send_mail
 
@@ -48,25 +49,16 @@ def results(request,inputt_id):
 
     inputt = get_object_or_404(Input, pk=inputt_id)
     imageee=inputt.photo.url
-
-    from keras.preprocessing import image
-
     test_image = image.load_img(r""+imageee[1::], target_size=(64, 64))
     test_image = image.img_to_array(test_image)
     test_image = np.expand_dims(test_image, axis=0)
     result = model.predict_proba(test_image)
-
-
-
-
-    print(result[0])
     if result[0][0] >= 0.5:
-        prediction = 'this is ' + str(result[0][0] * 100) + ' % a ' + 'dog'
+        prediction = 'This is ' + str(result[0][0] * 100) + ' % a ' + 'Dog'
 
     else:
-        prediction = 'this is ' + str((1-result[0][0]) * 100) + ' % a ' + 'cat'
+        prediction = 'This is ' + str((1-result[0][0]) * 100) + ' % a ' + 'Cat'
 
-    print(prediction)
 
     from pathlib import Path
     from email.mime.image import MIMEImage

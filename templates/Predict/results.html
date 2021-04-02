@@ -3,19 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Results</title>
+
+    <style>
+        .card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+}
+    </style>
+
 </head>
 <body>
 
 {% extends 'Predict/base.html' %}
 {% block base %}
-<div class="card" style="width:400px ">
+<div class="card border-secondary mb-3" style="width:400px ">
   <img class="card-img-top" src="{{ input.photo.url }}" alt="Card image">
     <div class="card-header"> Results </div>
   <div class="card-body">
     <h4 class="card-title">{{ rslt }}</h4>
   </div>
 </div>
-
 
 {% endblock %}
 </body>
